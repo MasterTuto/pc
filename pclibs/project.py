@@ -53,18 +53,15 @@ class Project:
             destination = self.project_root_folder / "src"
             shutil.copy(source, destination)
 
-            return
-            
-        file_name = sys.argv[0]
-        if not sys.argv[0].endswith(".exe"):
-            file_name += file_name
-        
-        source      = self.current_path / file_name
-        destination = self.project_root_folder / "src"
-        shutil.copy(source, destination)
+        else:
+            file_name = sys.argv[0]
+            if not sys.argv[0].endswith(".exe"):
+                file_name += file_name
+            source      = self.current_path / file_name
+            destination = self.project_root_folder / "src"
+            shutil.copy(source, destination)
 
-        print(self.current_path / "pclibs")
-        shutil.copytree(self.current_path / "pclibs", destination)
+        shutil.copytree(self.current_path / "pclibs", destination / "pclibs")
 
     def __add_config(self, values: dict) -> None:
         destination = self.project_root_folder / "src" / "config.json"
@@ -146,15 +143,15 @@ class Project:
             os.system(command)
         
         else:
-            os.system(f"javac com/{self.config['package']}/Principal.java")
+            os.system(f"{self.config['javahome']}\\bin\\javac com/{self.config['package']}/Principal.java")
 
     def execute(self) -> None:
         if self.config['use_javafx']:
-            command = f"{self.config['javahome']}\\bin\\java --module-path ..\\lib --add-modules javafx.fxml,javafx.controls com/{self.config['package']}/Principal.java"
+            command = f"{self.config['javahome']}\\bin\\java --module-path ..\\lib --add-modules javafx.fxml,javafx.controls com/{self.config['package']}/Principal"
             os.system(command)
         
         else:
-            os.system(f"javac com/{self.config['package']}/Principal.java")
+            os.system(f"{self.config['javahome']}\\bin\\java com/{self.config['package']}/Principal")
     
     def zip_project(self) -> None:
         pass
