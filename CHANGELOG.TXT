@@ -1,0 +1,5 @@
+=================
+v0.1: 26/02/2021
+    
+    * initial release
+    * can create new projects (and javafx projects)
