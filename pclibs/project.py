@@ -37,11 +37,8 @@ class Project:
         self.package = f"trabalho{project_number}"
 
         self.project_root_folder = self.current_path / folder_name
-        self.project_root_folder.mkdir()
 
-        self.project_root_folder.joinpath("src").mkdir()
-        self.project_root_folder.joinpath("src", "com").mkdir()
-        self.project_root_folder.joinpath("src", "com", self.package).mkdir()
+        self.project_root_folder.joinpath("src", "com", self.package).mkdir(parents=True)
 
         self.project_root_folder.joinpath("assets").mkdir()
 
@@ -87,7 +84,7 @@ class Project:
         with destination.open("w", encoding="utf-8") as configfile:
             configfile.write( json.dumps(new_config, indent=4) )
 
-    def create_new(self) -> None:
+    def create_new(self) -> str:
         code_folder = self.__create_file_structure()
 
         with code_folder.joinpath('Principal.java').open('w', encoding='utf-8') as main_java_file:
@@ -101,6 +98,8 @@ class Project:
         
         self.__copy_itself_to_src()
         self.__copy_config_to_src()
+        
+        return self.project_root_folder.parts[-1]
     
     def configure_javafx(self) -> None:
         if not self.project_root_folder.joinpath("lib").exists():
