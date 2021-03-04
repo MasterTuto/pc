@@ -19,15 +19,6 @@ class Arguments:
             }
         },
         {
-            'names': ['--javafx-version', '-jfxv'],
-            'attributes': {
-                'help': 'Mudar versão do JavaFX para baixar',
-                'nargs': '?',
-                'const': '11.0.2',
-                'default': '11.0.2'
-            }
-        },
-        {
             'names': ['--project-name', '-pn'],
             'attributes': {
                 'help': 'Nome do programa',
@@ -66,10 +57,26 @@ class Arguments:
             }
         },
         {
+            'names': ['-zip'],
+            'attributes': {
+                'help': 'Faz o zip dos arquivos do projetos (excluindo, claro, o script pc)',
+                'action': 'store_true'
+            }
+        },
+        {
             'names': ['-send', '-submit'],
             'attributes': {
                 'help': "Envia arquivo compactado por email, para email especificado no config.json",
-                'action': 'store_true'
+                'action': 'store_true',
+                'dest': 'submit'
+            }
+        },
+        {
+            'names': ['-p', '--prettify'],
+            'attributes': {
+                'help': "Ajusta a identação, codificacao, uso de caracteres acentuados, terminacao de linha, etc (pode haver erros)",
+                'action': 'store_true',
+                'dest': 'prettify'
             }
         }
     ]
@@ -80,13 +87,14 @@ class Arguments:
         )
 
         self.fill_arguments()
-        self.parsed_arguments = vars(self.parser.parse_args())
+        self.parsed_arguments = self.parser.parse_args()
     
     def __getitem__(self, item: str):
-        return self.parsed_arguments[item]
+
+        return self.parsed_arguments.__getattribute__(item)
 
     def __getattr__(self, item: str):
-        return self.parsed_arguments[item]
+        return self.parsed_arguments.__getattribute__(item)
     
     def fill_arguments(self) -> None:
         for argument in self.argument_list:

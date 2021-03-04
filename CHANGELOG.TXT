@@ -1,4 +1,10 @@
 =================
+v0.2: 03/03/2021
+    
+    * updated: its now in a way marlos approves
+    * bundled into a single py
+
+=================
 v0.1: 26/02/2021
     
     * initial release

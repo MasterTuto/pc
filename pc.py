@@ -21,10 +21,24 @@ def main():
         print("Projeto criado em " + project_folder)
     else:
         if arguments.compile:
+            print("Compilando projeto...")
             project.compile_project()
         
         if arguments.execute:
+            print("Executando projeto...")
             project.execute()
+        
+        if arguments.clean:
+            print("Limpando arquivos *.class...")
+            project.delete_class_files()
+        
+        if arguments.zip:
+            print("Compactando arquivo no .zip...")
+            project.zip_project()
+        
+        if arguments.submit:
+            print("Iniciando processo de envio do email...")
+            project.send_email()
 
 if __name__ == "__main__":
     main()
