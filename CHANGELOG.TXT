@@ -1,4 +1,11 @@
 =================
+v0.3: 04/03/2021
+
+    + delete all class files inside project
+    + zip project
+    + send to email    
+
+=================
 v0.2: 03/03/2021
     
     * updated: its now in a way marlos approves
