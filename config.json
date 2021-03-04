@@ -1,15 +1,7 @@
 {
     "enrollment": "<matricula>",
-<<<<<<< HEAD
     "to": "<recipient, email de marlos=marlos.uesb@gmail.com>",
     "author": "<seu nome completo>",
     "email": "<email>",
-    "password": "<senha>",
-    "javahome": "C:\\jdk-14\\"
-=======
-    "to": "<recipient, email de marlos=marlos.uesb@gmail.com",
-    "author": "<breno>",
-    "email": "<seu_email_academico>",
-    "password": "<senha do email academico>"
->>>>>>> 5cf0fb5 (can bundle, and all functions are active)
+    "password": "<senha>"
 }
